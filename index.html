@@ -1,120 +1,726 @@
-<div dir="rtl" style="background-color: #F4F7FA; padding: 30px 0; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif; text-align: right; width: 100%;">
-    
-    <style>
-        @font-face {
-            font-family: 'The Year of Handicrafts';
-            src: url('https://drive.google.com/uc?export=download&id=1V7xbBK1MCNb9YEFPMHJkJtf5i9-CC8KK') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'The Year of Handicrafts';
-            src: url('https://drive.google.com/uc?export=download&id=1wtzDHvNLSzW3RfRUTOmaxRytr3lvDWpU') format('truetype');
-            font-weight: bold;
-            font-style: normal;
-        }
-    </style>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دليل رؤية 2030 الذكي</title>
+<meta name="description" content="مساعد ذكي يجيب عن أسئلتك حول رؤية السعودية 2030 من قاعدة معرفة مختصرة، ويعرض مصدر كل إجابة. مشروع تدريبي.">
+<meta name="theme-color" content="#071F22">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+  :root{
+    --bg:#FAFAF7; --ink:#1D2520; --muted:#5B6660; --line:#DEDFD8;
+    --night:#071F22; --oasis:#0A3D2F; --palm:#0F5C46; --dawn:#F2C27E; --sadu:#A8322A; --sand:#EFE6D3;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;font-size:17px;line-height:1.8;overflow-x:hidden}
+  a{color:var(--palm)}
+  :focus-visible{outline:3px solid var(--dawn);outline-offset:3px}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-weight:700;line-height:1.3;margin:0}
+  section{scroll-margin-top:70px}
 
-    <table align="center" border="0" cellpadding="0" cellspacing="0" width="650" style="max-width: 650px; width: 100%; background-color: #ffffff; margin: 0 auto; border-collapse: collapse; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden;">
-        
-        <tr>
-            <td align="center" style="padding: 0; line-height: 0; font-size: 0;">
-                <img src="https://drive.google.com/uc?export=view&id=1l_UlOlFFgQ3VgtzOKINskIT4Ck0icOLo" alt="برنامـج مسـتقبلك التقنـي" width="650" style="display: block; width: 100%; max-width: 650px; height: auto; border: 0;" />
-            </td>
-        </tr>
+  /* ---------- header: transparent over the scene, solid after scrolling ---------- */
+  .top{position:fixed;inset:0 0 auto 0;z-index:50;color:#fff;transition:background-color .4s,box-shadow .4s}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+  .top.solid{background:rgba(7,31,34,.9);box-shadow:0 1px 0 rgba(255,255,255,.08);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:#fff;text-decoration:none}
+  .mark{width:4px;height:24px;border-radius:2px;background:linear-gradient(var(--dawn),#7FB8A4)}
+  .top nav a{color:#D7E5DF;text-decoration:none;margin-inline-start:22px;font-size:15px;position:relative}
+  .top nav a::after{content:"";position:absolute;inset:auto 0 -4px 0;height:2px;background:var(--dawn);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+  .top nav a:hover{color:#fff}
+  .top nav a:hover::after{transform:scaleX(1)}
 
-        <tr>
-            <td align="center" style="padding: 30px 20px 10px;">
-                <table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-                    <tr>
-                        <td align="center" bgcolor="#F0F8F9" style="border: 1px solid #37C5CB; border-radius: 20px; padding: 8px 24px; color: #00002D; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif; font-size: 16px; font-weight: bold;">
-                            شـكـر وتقديـر لتفانيـكم وعطائـكم المعرفـي
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+  /* ---------- hero: the illustration + the assistant ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;color:#fff;background:var(--night);overflow:hidden;padding:108px 0 76px}
+  .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hero-shade{position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to left,rgba(5,24,24,.9) 0%,rgba(5,24,24,.72) 34%,rgba(5,24,24,.18) 62%,rgba(5,24,24,0) 76%),
+               linear-gradient(to top,rgba(5,20,19,.6),rgba(5,20,19,0) 30%)}
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero-copy{max-width:640px}
+  .hero h1{font-size:clamp(38px,5.8vw,70px);line-height:1.18;letter-spacing:-.5px}
+  .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+  .hero h1 .ln>span{display:inline-block}
+  .hero .lead{color:#D3E2DB;max-width:54ch;margin:16px 0 26px;font-size:18px}
 
-        <tr>
-            <td style="padding: 20px 45px 40px; color: #2C3E50; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif; font-weight: normal; font-size: 16px; line-height: 1.8; text-align: right;">
-                
-                <p style="margin: 0 0 5px; font-size: 17px; font-weight: bold; color: #00002D; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">السـلام عليـكم ورحمـة اللـه وبركاتـه،</p>
-                <p style="margin: 0 0 5px; font-size: 17px; font-weight: bold; color: #00002D; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">سـعادة أ. عبدالعزيز بن أحمد العوفي،</p>
-                <p style="margin: 0 0 25px; color: #555555; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">تحيّـة طيبـة وبعـد،</p>
+  .panel{background:rgba(6,30,29,.55);border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:18px;
+    -webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+  .ask{display:flex;gap:10px}
+  .ask label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .ask input{flex:1;min-width:0;font:inherit;font-size:18px;padding:14px 18px;border-radius:13px;border:2px solid transparent;background:#fff;color:var(--ink);transition:border-color .25s,box-shadow .25s}
+  .ask input:focus{border-color:var(--dawn);outline:none;box-shadow:0 0 0 6px rgba(242,194,126,.18)}
+  .ask button{position:relative;font:inherit;font-weight:700;padding:0 28px;border-radius:13px;border:0;background:var(--sadu);color:#fff;cursor:pointer;overflow:hidden;transition:transform .2s var(--ease),background-color .25s}
+  .ask button:hover:not(:disabled){background:#BC3B31}
+  .ask button:active:not(:disabled){transform:scale(.97)}
+  .ask button:disabled{opacity:.6;cursor:wait}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chips button{font:inherit;font-size:14.5px;padding:5px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04);color:#E6F0EB;cursor:pointer;transition:background-color .25s,border-color .25s,transform .25s var(--ease)}
+  .chips button:hover{background:rgba(242,194,126,.16);border-color:var(--dawn);transform:translateY(-2px)}
+  .status{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14.5px;color:#C4D7CE;min-height:1.8em}
+  .status::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--dawn);animation:blink 1.1s ease-in-out infinite}
+  body[data-ready="1"] .status::before{background:#7FD3A8;animation:ping 2.4s ease-out infinite}
+  .bar{height:5px;background:rgba(255,255,255,.12);border-radius:4px;overflow:hidden;margin-top:6px;transition:opacity .6s .8s}
+  .bar span{display:block;height:100%;width:0;border-radius:4px;transition:width .35s;
+    background:linear-gradient(90deg,var(--dawn),#FFF0CF,var(--dawn)) 0 0/200% 100%;animation:shimmer 1.4s linear infinite}
+  body[data-ready="1"] .bar{opacity:0}
 
-                <p style="margin: 0 0 15px; color: #2C3E50; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                    يسـر فريـق عمـل <strong style="color: #37C5CB; font-weight: bold; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">«برنامـج مسـتقبلك التقنـي 2026»</strong> أن يتقـدم لسـعادتكم بخالـص الشـكر والتقديـر وعظيـم الامتنـان، نظيـر جهودكـم المباركـة وعطائكـم الاسـتثنائي المتميـز فـي تقديـم ورشـة العمـل التدريبيـة بعنـوان: <strong style="color: #00002D; font-weight: bold; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">«مختبر التصميم الرقمي: من أبحاث المستخدم إلى الواجهات التفاعلية»</strong>.
-                </p>
+  .answer{margin-top:16px;background:#fff;color:var(--ink);border-radius:16px;padding:20px 22px;display:none;position:relative;overflow:hidden}
+  .answer::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(to left,var(--palm),var(--dawn))}
+  .answer.show{display:block;animation:cardIn .5s var(--ease)}
+  .answer .q{font-size:14.5px;color:var(--muted);margin:0 0 6px}
+  .answer .a{font-size:19px;margin:0}
+  .answer .a .w{animation:wordIn .55s var(--ease) both;animation-delay:calc(var(--i) * 24ms)}
+  .answer .meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:14.5px;color:var(--muted)}
+  .answer .meta b{color:var(--palm)}
+  .conf{display:inline-block;width:96px;height:7px;border-radius:4px;background:var(--line);vertical-align:middle;margin-inline-start:8px;overflow:hidden}
+  .conf i{display:block;height:100%;width:0;background:linear-gradient(to left,var(--palm),#3FA07C);border-radius:4px;transition:width .9s var(--ease) .25s}
+  .answer.unknown::before{background:var(--sadu)}
+  .answer.unknown .a{color:var(--sadu)}
+  .related{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;font-size:15px}
+  .related button{font:inherit;font-size:14.5px;border:0;background:var(--sand);color:var(--oasis);border-radius:8px;padding:3px 10px;margin:4px 0 0 6px;cursor:pointer;transition:background-color .2s}
+  .related button:hover{background:#E4D6B9}
+  .credit{position:absolute;z-index:2;bottom:12px;left:24px;margin:0;font-size:12px;color:rgba(255,255,255,.62)}
 
-                <p style="margin: 0 0 15px; color: #2C3E50; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                    لقـد كـان لعرضكـم التقديمـي الاحترافـي، وأدائكـم المتميـز فـي تقديـم المحتـوى وإيصالـه بلغـة مبسطـة وواضحـة لغيـر المتخصصيـن، الأثـر البـارز فـي جعـل هـذه الورشـة <strong style="color: #37C5CB; font-weight: bold; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">استثنائيـة ومميـزة جـداً</strong>.
-                </p>
+  /* load sequence: the city rises out of the horizon, then the words */
+  .js .wall-build{transform-box:view-box;transform-origin:560px 520px;animation:build 2.2s var(--ease) .35s both}
+  .js .layer.far>*,.js .layer.mid>*,.js .layer.near>*{animation:rise 1.6s var(--ease) both}
+  .js .layer.far>*{animation-delay:.1s}.js .layer.mid>*{animation-delay:.22s}.js .layer.near>*{animation-delay:.34s}
+  .js .sun{animation:sunrise 3.4s var(--ease) .2s both}
+  .star{fill:#fff;opacity:var(--o);animation:twinkle 4s ease-in-out var(--d) infinite}
+  .sheen{animation:sheen 7s ease-in-out 2.6s infinite}
+  .glint{animation:glint 3.2s ease-in-out infinite}
+  .ridge{fill:none;stroke:#E9B77B;stroke-opacity:.5;stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.4s var(--ease) 1.2s forwards}
+  .js .hero h1 .ln>span{animation:lineUp 1s var(--ease) both}
+  .js .hero h1 .ln:nth-child(1)>span{animation-delay:.55s}
+  .js .hero h1 .ln:nth-child(2)>span{animation-delay:.7s}
+  .js .hero .lead{animation:fadeUp .9s var(--ease) .95s both}
+  .js .panel{animation:fadeUp .9s var(--ease) 1.1s both}
 
-                <p style="margin: 0 0 15px; color: #2C3E50; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                    وقـد نالـت الورشـة تفاعـلاً واسـتحساناً واسـعاً مـن جميـع الحضـور، الذيـن أبـدوا انبهارهـم الشـديد بمحتواهـا القيّـم وطرحكـم المتميـز الـذي لامـس احتياجاتهـم العمليـة.
-                </p>
+  /* ---------- Sadu band ---------- */
+  .sadu{height:22px;animation:sadu 14s linear infinite;background:
+      linear-gradient(135deg,var(--sadu) 25%,transparent 25%) 0 0/22px 22px,
+      linear-gradient(225deg,var(--sadu) 25%,transparent 25%) 0 0/22px 22px,
+      linear-gradient(315deg,#1D2520 25%,transparent 25%) 0 0/22px 22px,
+      linear-gradient(45deg,#1D2520 25%,transparent 25%) 0 0/22px 22px,
+      var(--sand)}
 
-                <p style="margin: 0 0 20px; color: #2C3E50; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                    ونظيـر هـذا العطاء المتميز نـود إحاطتكـم بأنـه قـد <strong style="color: #37C5CB; font-weight: bold; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">تـم إرفـاق شـهادة شـكر وتقديـر</strong> لسـعادتكم فـي مرفقـات هـذا البريـد الإلكترونـي بصيغـة (PDF)، تعبيـراً عـن فخرنـا واعتزازنـا بتواجدكـم ومسـاهمتكم القيّمـة معنـا.
-                </p>
+  .block{padding:84px 0}
+  .block h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:10px}
+  .block .intro{color:var(--muted);max-width:60ch;margin:0 0 36px}
 
-                <!-- بطاقة توثيق الساعات التطوعية -->
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#F8FAFC" style="background-color: #F8FAFC; border: 1px solid #E1E8ED; border-right: 4px solid #37C5CB; border-radius: 6px; margin-bottom: 25px;">
-                    <tr>
-                        <td style="padding: 15px 20px; color: #00002D; font-size: 15px; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                            <strong style="font-weight: bold; color: #00002D; display: block; margin-bottom: 4px; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">❖ توثيـق السـاعات التطوعيـة:</strong>
-                            جـاري العمـل علـى توثيقهـا فـي المنصـة الوطنيـة للعمـل التطوعـي قريبًـا، وسـيتم إشـعاركم فـور الانتهـاء مـن ذلـك بمشيئـة اللـه، وذلـك عبـر منسـق التواصـل <span style="font-weight: bold; color: #37C5CB; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">م. نوف القحطاني</span>.
-                        </td>
-                    </tr>
-                </table>
+  /* scroll reveal */
+  .js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+  .js .rv.in{opacity:1;transform:none}
 
-                <!-- بطاقة روابط التسجيلات -->
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="border: 1px solid #E1E8ED; border-right: 4px solid #00002D; border-radius: 6px; margin-bottom: 30px;">
-                    <tr>
-                        <td style="background-color: #F0F8F9; padding: 15px 20px; border-bottom: 1px solid #E1E8ED; border-radius: 6px 6px 0 0;">
-                            <strong style="color: #00002D; font-size: 15px; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">🎥 لمشاهدة الورشة المسجلة:</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center" style="padding: 20px;">
-                            <!-- زر Zoom -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                <tr>
-                                    <td align="center">
-                                        <a href="https://us02web.zoom.us/meeting/register/urInoXU8S5CeNtG5AwvLhw" target="_blank" style="display: inline-block; width: 80%; padding: 10px; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif; font-size: 15px; font-weight: bold; color: #ffffff; background-color: #2D8CFF; text-decoration: none; border-radius: 6px;">مشاهدة الورشة عبر Zoom</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+  /* ---------- targets: counters that ask the assistant ---------- */
+  .targets{background:var(--night);color:#fff;position:relative;overflow:hidden}
+  .targets::after{content:"";position:absolute;inset:auto -10% -1px -10%;height:1px;background:linear-gradient(to left,transparent,var(--dawn),transparent);opacity:.6}
+  .targets .intro{color:#AFC6BC}
+  .t-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .target{font:inherit;text-align:start;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px 20px 18px;cursor:pointer;position:relative;overflow:hidden;
+    transition:transform .45s var(--ease),border-color .3s,background-color .3s}
+  .target::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(242,194,126,.22),transparent 60%);opacity:0;transition:opacity .3s}
+  .target:hover{transform:translateY(-4px);border-color:rgba(242,194,126,.55)}
+  .target:hover::before{opacity:1}
+  .target .num{display:block;font-size:clamp(26px,3.6vw,46px);font-weight:700;line-height:1.1;color:var(--dawn);font-variant-numeric:tabular-nums}
+  .target .cap{display:block;margin-top:8px;color:#D3E2DB;font-size:15.5px;line-height:1.6}
+  .target .go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13.5px;color:#9FC2B3;transition:color .3s,gap .3s var(--ease)}
+  .target:hover .go{color:#fff;gap:10px}
+  .target .go svg{width:14px;height:14px}
 
-                <p style="margin: 0 0 35px; color: #2C3E50; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                    نكـرر شـكرنا وامتناننـا لوقتكـم وثميـن علمكـم، ونتطلـع بشـغف ونسـعى لأن يكـون بيننـا تعاونـات ممتـدة ومثمـرة أخـرى فـي المسـتقبل القريـب بمشيئـة اللـه تعالـى.
-                </p>
+  /* ---------- how it works: a sequence, joined by a line ---------- */
+  .steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:34px;counter-reset:s;margin:0;padding:0;list-style:none}
+  .steps::before{content:"";position:absolute;top:22px;right:22px;left:22px;height:2px;background:linear-gradient(to left,var(--palm),var(--dawn),var(--sadu));transform:scaleX(0);transform-origin:right;transition:transform 1.6s var(--ease) .2s}
+  .steps.in::before{transform:scaleX(1)}
+  .no-js .steps::before,html:not(.js) .steps::before{transform:none}
+  .steps li{counter-increment:s;position:relative}
+  .steps li::before{content:counter(s);position:relative;z-index:1;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--bg);border:2px solid var(--palm);color:var(--palm);font-weight:700;font-size:19px;margin-bottom:16px;transition:background-color .4s,color .4s;transition-delay:calc(.4s + var(--k) * .45s)}
+  .steps.in li::before{background:var(--palm);color:#fff}
+  .steps h3{font-size:21px;margin-bottom:6px}
+  .steps p{margin:0;color:var(--muted)}
 
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-top: 1px solid #E1E8ED;">
-                    <tr>
-                        <td style="padding-top: 20px; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                            <p style="margin: 0 0 5px; font-size: 17px; font-weight: bold; color: #00002D; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">م. نوف القحطاني</p>
-                            <p style="margin: 0; font-size: 14px; color: #37C5CB; font-weight: bold; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">برنامـج مسـتقبلك التقنـي</p>
-                        </td>
-                    </tr>
-                </table>
+  /* ---------- pillars ---------- */
+  .pillars{background:var(--sand)}
+  .pillar-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .pillar{background:#FBF7EE;border-radius:18px;padding:26px 24px;position:relative;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s}
+  .pillar::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--c);transform:scaleX(0);transform-origin:right;transition:transform 1s var(--ease) calc(var(--d,0s) + .3s)}
+  .pillar.in::before,html:not(.js) .pillar::before{transform:scaleX(1)}
+  .pillar:hover{transform:translateY(-4px);box-shadow:0 22px 40px -26px rgba(60,45,20,.45)}
+  .pillar h3{font-size:25px;color:var(--oasis)}
+  .pillar .traits{color:var(--sadu);font-weight:600;margin:6px 0 10px;font-size:15.5px}
+  .pillar p{margin:0;color:#4A4A3F}
 
-            </td>
-        </tr>
+  /* ---------- projects ---------- */
+  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:0 44px}
+  .project{display:flex;gap:18px;padding:18px 6px;border-bottom:1px solid var(--line);position:relative}
+  .project::after{content:"";position:absolute;inset:auto 0 -1px 0;height:2px;background:var(--palm);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+  .project:hover::after{transform:scaleX(1)}
+  .project .where{flex:none;width:120px;color:var(--palm);font-weight:600;font-size:14.5px;padding-top:4px}
+  .project h3{font-size:20px;transition:color .3s}
+  .project:hover h3{color:var(--palm)}
+  .project p{margin:2px 0 0;color:var(--muted);font-size:16px}
+  .project .askit{font:inherit;font-size:14px;color:var(--palm);background:none;border:0;padding:0;margin-top:6px;cursor:pointer;text-decoration:underline;text-underline-offset:4px;opacity:.85}
+  .project .askit:hover{opacity:1}
 
-        <tr>
-            <td align="center" style="padding: 0; line-height: 0; font-size: 0;">
-                <img src="https://drive.google.com/uc?export=view&id=1wFw51sMO3flQhMQ1FEa4DE-oJEL_jXsQ" alt="شركاء النجاح" width="650" style="display: block; width: 100%; max-width: 650px; height: auto; border: 0;" />
-            </td>
-        </tr>
+  /* ---------- about ---------- */
+  .about{background:#fff;border-top:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:44px;align-items:start}
+  .note{background:var(--sand);border-radius:16px;padding:20px 22px;font-size:15.5px}
+  footer{background:var(--night);color:#CFE0D8;font-size:14.5px;padding:24px 0}
+  footer a{color:#fff}
 
-        <tr>
-            <td bgcolor="#F8FAFC" style="padding: 15px; text-align: center; font-size: 12px; color: #888888; font-family: 'The Year of Handicrafts', 'Segoe UI', Tahoma, Arial, sans-serif;">
-                جميع الحقوق محفوظة لبرنامج مستقبلك التقني 2026
-            </td>
-        </tr>
-    </table>
-</div>
+  @keyframes build{from{transform:scale(0);opacity:0}30%{opacity:1}to{transform:none;opacity:1}}
+  @keyframes rise{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+  @keyframes sunrise{from{transform:translateY(90px);opacity:.2}to{transform:none;opacity:1}}
+  @keyframes twinkle{0%,100%{opacity:var(--o)}50%{opacity:calc(var(--o) * .25)}}
+  @keyframes sheen{0%{transform:skewX(-18deg) translateX(0)}55%,100%{transform:skewX(-18deg) translateX(1100px)}}
+  @keyframes glint{0%,100%{opacity:.35}50%{opacity:1}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes lineUp{from{transform:translateY(110%)}to{transform:none}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+  @keyframes wordIn{from{opacity:0;filter:blur(5px)}to{opacity:1;filter:none}}
+  @keyframes shimmer{to{background-position:-200% 0}}
+  @keyframes blink{50%{opacity:.25}}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(127,211,168,.6)}70%,100%{box-shadow:0 0 0 10px rgba(127,211,168,0)}}
+  @keyframes sadu{to{background-position:-132px 0,-132px 0,-132px 0,-132px 0,0 0}}
+
+  @media (max-width:900px){
+    .t-row{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:760px){
+    .top nav{display:none}
+    .hero{align-items:flex-start;padding:0 0 64px;min-height:0}
+    .scene{height:66svh;bottom:auto}
+    .hero-shade{background:linear-gradient(to bottom,rgba(5,24,24,.15) 0%,rgba(5,24,24,.45) 34%,var(--night) 66svh)}
+    .hero-inner{padding-top:34svh}
+    .hero h1{font-size:clamp(34px,9.5vw,46px)}
+    .hero .lead{font-size:17px}
+    .panel{padding:14px;border-radius:18px}
+    .ask{flex-direction:column}
+    .ask button{padding:13px}
+    .credit{left:16px;bottom:10px}
+    .block{padding:64px 0}
+    .steps,.pillar-row,.projects,.about-grid{grid-template-columns:1fr}
+    .steps::before{top:0;bottom:0;right:22px;left:auto;width:2px;height:auto;transform:scaleY(0);transform-origin:top}
+    .steps.in::before{transform:scaleY(1)}
+    .steps li{padding-inline-start:64px}
+    .steps li::before{position:absolute;right:0;top:0;margin:0}
+    .project .where{width:92px}
+  }
+  @media (max-width:440px){ .t-row{grid-template-columns:1fr 1fr;gap:12px} .target{padding:16px 14px} .target .num{font-size:clamp(24px,7.2vw,30px)} .target .cap{font-size:14px} }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+    .js .rv{opacity:1;transform:none}
+    .star{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#assistant"><span class="mark" aria-hidden="true"></span>دليل رؤية 2030 الذكي</a>
+    <nav aria-label="أقسام الصفحة">
+      <a href="#targets">المستهدفات</a>
+      <a href="#how">كيف يعمل</a>
+      <a href="#pillars">المحاور</a>
+      <a href="#projects">المشاريع الكبرى</a>
+      <a href="#about">عن المشروع</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero" id="assistant">
+<svg class="scene" id="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="رسم توضيحي لمدينة خطية بواجهات عاكسة تمتد عبر الصحراء والجبال نحو البحر الأحمر وقت الفجر">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#071F22"/><stop offset=".38" stop-color="#123B3B"/>
+    <stop offset=".62" stop-color="#5B5A55"/><stop offset=".78" stop-color="#C9895A"/>
+    <stop offset=".86" stop-color="#F2C27E"/><stop offset="1" stop-color="#F7D9A3"/>
+  </linearGradient>
+  <linearGradient id="mirrorSky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0C2C30"/><stop offset=".35" stop-color="#1E4A4C"/>
+    <stop offset=".72" stop-color="#9C7A5E"/><stop offset=".93" stop-color="#F0C389"/><stop offset="1" stop-color="#FBE3B5"/>
+  </linearGradient>
+  <linearGradient id="mirrorGround" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#C08E5F"/><stop offset=".25" stop-color="#6E5038"/><stop offset="1" stop-color="#1D1915"/>
+  </linearGradient>
+  <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#C79461"/><stop offset=".18" stop-color="#7A583B"/><stop offset=".6" stop-color="#3A2E24"/><stop offset="1" stop-color="#1B1714"/>
+  </linearGradient>
+  <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F6CF92" stop-opacity="0"/><stop offset=".7" stop-color="#F6CF92" stop-opacity=".55"/><stop offset="1" stop-color="#F6CF92" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="sunGlow"><stop offset="0" stop-color="#FFE7B3" stop-opacity=".95"/><stop offset=".25" stop-color="#FFD08A" stop-opacity=".45"/><stop offset="1" stop-color="#FFC26E" stop-opacity="0"/></radialGradient>
+  <radialGradient id="pulse"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#FFE9BF" stop-opacity=".9"/><stop offset="1" stop-color="#FFD58F" stop-opacity="0"/></radialGradient>
+  <clipPath id="wallClip"><polygon points="-60,190 560,518 560,522 -60,1010"/></clipPath>
+  <path id="topEdge" d="M-60,190 L560,518"/>
+</defs>
+
+<rect width="1600" height="900" fill="url(#sky)"/>
+<g class="stars"><circle class="star" cx="857" cy="129" r="1.2" style="--d:2.3s;--o:0.64"/><circle class="star" cx="1036" cy="150" r="1.5" style="--d:3.6s;--o:0.58"/><circle class="star" cx="870" cy="40" r="1.6" style="--d:0.3s;--o:0.89"/><circle class="star" cx="1097" cy="159" r="1.6" style="--d:1.8s;--o:0.56"/><circle class="star" cx="1576" cy="184" r="1.1" style="--d:4.1s;--o:0.49"/><circle class="star" cx="969" cy="43" r="0.9" style="--d:4.6s;--o:0.88"/><circle class="star" cx="1255" cy="181" r="1.0" style="--d:3.6s;--o:0.50"/><circle class="star" cx="1396" cy="244" r="1.5" style="--d:2.5s;--o:0.32"/><circle class="star" cx="892" cy="286" r="1.6" style="--d:1.0s;--o:0.21"/><circle class="star" cx="1067" cy="73" r="0.9" style="--d:1.3s;--o:0.80"/><circle class="star" cx="599" cy="66" r="0.9" style="--d:5.0s;--o:0.82"/><circle class="star" cx="1465" cy="321" r="1.2" style="--d:3.8s;--o:0.15"/><circle class="star" cx="1163" cy="32" r="1.7" style="--d:4.9s;--o:0.91"/><circle class="star" cx="678" cy="28" r="1.5" style="--d:2.4s;--o:0.92"/><circle class="star" cx="1036" cy="298" r="1.7" style="--d:4.4s;--o:0.17"/><circle class="star" cx="1178" cy="126" r="1.7" style="--d:1.0s;--o:0.65"/><circle class="star" cx="1440" cy="327" r="1.4" style="--d:4.7s;--o:0.15"/><circle class="star" cx="611" cy="142" r="1.5" style="--d:1.5s;--o:0.61"/><circle class="star" cx="922" cy="213" r="1.5" style="--d:1.4s;--o:0.41"/><circle class="star" cx="1004" cy="48" r="1.1" style="--d:4.5s;--o:0.87"/><circle class="star" cx="1281" cy="223" r="1.6" style="--d:1.6s;--o:0.38"/><circle class="star" cx="1165" cy="152" r="1.0" style="--d:5.0s;--o:0.58"/><circle class="star" cx="1260" cy="151" r="1.0" style="--d:0.9s;--o:0.58"/><circle class="star" cx="1505" cy="309" r="1.0" style="--d:3.7s;--o:0.15"/><circle class="star" cx="1597" cy="299" r="1.2" style="--d:2.5s;--o:0.17"/><circle class="star" cx="1521" cy="269" r="1.7" style="--d:2.0s;--o:0.25"/><circle class="star" cx="1097" cy="129" r="1.0" style="--d:1.9s;--o:0.64"/><circle class="star" cx="606" cy="287" r="1.6" style="--d:0.5s;--o:0.20"/><circle class="star" cx="633" cy="199" r="1.1" style="--d:2.6s;--o:0.45"/><circle class="star" cx="868" cy="312" r="1.5" style="--d:2.2s;--o:0.15"/><circle class="star" cx="695" cy="224" r="1.0" style="--d:4.1s;--o:0.38"/><circle class="star" cx="901" cy="78" r="1.2" style="--d:2.9s;--o:0.78"/><circle class="star" cx="639" cy="203" r="1.5" style="--d:4.1s;--o:0.44"/><circle class="star" cx="1417" cy="39" r="0.9" style="--d:3.6s;--o:0.89"/><circle class="star" cx="1002" cy="329" r="1.3" style="--d:4.1s;--o:0.15"/><circle class="star" cx="1163" cy="83" r="0.8" style="--d:0.7s;--o:0.77"/><circle class="star" cx="830" cy="264" r="0.9" style="--d:1.9s;--o:0.27"/><circle class="star" cx="1553" cy="94" r="1.5" style="--d:1.9s;--o:0.74"/><circle class="star" cx="592" cy="280" r="1.0" style="--d:3.2s;--o:0.22"/><circle class="star" cx="1098" cy="319" r="1.2" style="--d:3.5s;--o:0.15"/><circle class="star" cx="747" cy="88" r="1.3" style="--d:2.5s;--o:0.76"/><circle class="star" cx="931" cy="189" r="1.0" style="--d:2.2s;--o:0.47"/><circle class="star" cx="1207" cy="12" r="1.4" style="--d:1.2s;--o:0.97"/><circle class="star" cx="1398" cy="163" r="1.2" style="--d:2.1s;--o:0.55"/><circle class="star" cx="915" cy="43" r="1.2" style="--d:4.3s;--o:0.88"/><circle class="star" cx="1528" cy="74" r="1.7" style="--d:4.0s;--o:0.79"/><circle class="star" cx="1104" cy="286" r="1.3" style="--d:3.2s;--o:0.21"/><circle class="star" cx="1164" cy="201" r="1.4" style="--d:0.3s;--o:0.44"/><circle class="star" cx="1254" cy="164" r="0.9" style="--d:3.7s;--o:0.54"/><circle class="star" cx="935" cy="162" r="0.9" style="--d:3.0s;--o:0.55"/><circle class="star" cx="1199" cy="77" r="0.8" style="--d:4.4s;--o:0.79"/><circle class="star" cx="1484" cy="27" r="1.2" style="--d:1.3s;--o:0.93"/><circle class="star" cx="645" cy="170" r="0.7" style="--d:1.4s;--o:0.53"/><circle class="star" cx="1489" cy="142" r="1.2" style="--d:2.4s;--o:0.61"/><circle class="star" cx="1105" cy="41" r="1.6" style="--d:0.1s;--o:0.89"/><circle class="star" cx="1362" cy="285" r="0.8" style="--d:0.6s;--o:0.21"/><circle class="star" cx="842" cy="86" r="1.5" style="--d:3.4s;--o:0.76"/><circle class="star" cx="1401" cy="39" r="1.5" style="--d:0.3s;--o:0.89"/><circle class="star" cx="1588" cy="243" r="1.4" style="--d:3.4s;--o:0.32"/><circle class="star" cx="631" cy="21" r="1.2" style="--d:1.4s;--o:0.94"/><circle class="star" cx="950" cy="70" r="1.2" style="--d:0.2s;--o:0.80"/><circle class="star" cx="639" cy="16" r="1.1" style="--d:0.6s;--o:0.95"/><circle class="star" cx="1420" cy="306" r="0.7" style="--d:2.5s;--o:0.15"/><circle class="star" cx="1257" cy="20" r="1.2" style="--d:0.5s;--o:0.94"/><circle class="star" cx="1199" cy="209" r="1.3" style="--d:3.7s;--o:0.42"/><circle class="star" cx="1006" cy="320" r="1.2" style="--d:1.2s;--o:0.15"/><circle class="star" cx="1263" cy="37" r="1.2" style="--d:4.7s;--o:0.90"/><circle class="star" cx="1223" cy="289" r="0.9" style="--d:2.8s;--o:0.20"/><circle class="star" cx="860" cy="199" r="1.6" style="--d:0.7s;--o:0.45"/><circle class="star" cx="1590" cy="296" r="0.9" style="--d:1.2s;--o:0.18"/></g>
+
+<g class="sun"><circle cx="650" cy="486" r="340" fill="url(#sunGlow)"/><circle cx="650" cy="486" r="26" fill="#FFF3D6"/></g>
+
+<g class="layer far" data-depth="4"><path d="M-40,524 L-40,473 Q-40,473 -12,479 Q16,485 39,487 Q62,488 87,480 Q113,473 129,485 Q144,497 173,499 Q203,500 230,500 Q258,500 280,494 Q302,488 320,477 Q338,465 369,478 Q399,490 413,489 Q427,488 459,491 Q490,494 507,496 Q525,498 540,499 Q554,500 576,500 Q598,500 616,500 Q634,500 652,500 Q669,500 689,500 Q708,500 737,499 Q766,497 792,499 Q817,500 849,491 Q881,481 898,486 Q914,490 941,484 Q968,479 999,481 Q1030,483 1059,479 Q1088,474 1107,472 Q1127,470 1157,461 Q1187,452 1210,449 Q1233,447 1247,454 Q1262,460 1290,463 Q1319,465 1336,464 Q1353,462 1379,458 Q1406,453 1427,455 Q1448,456 1471,449 Q1494,442 1517,445 Q1541,447 1563,460 Q1586,472 1601,467 Q1615,461 1647,459 L1679,524 Z" fill="#8C7F86" fill-opacity=".75"/></g>
+<rect class="sea" x="440" y="516" width="620" height="9" fill="#F9DDA6"/>
+<rect class="glint" x="622" y="518" width="60" height="5" rx="2" fill="#FFF7E4"/>
+<g class="layer mid" data-depth="8"><path d="M-40,525 L-40,465 Q-40,465 -28,473 Q-15,482 9,477 Q33,472 54,476 Q76,480 96,478 Q117,476 137,482 Q158,489 176,491 Q193,493 216,484 Q238,474 264,473 Q290,472 308,477 Q326,481 338,491 Q350,500 369,504 Q387,507 404,500 Q421,492 441,490 Q460,489 475,499 Q490,508 507,512 Q523,515 542,505 Q561,495 583,501 Q604,508 629,502 Q654,496 677,488 Q700,480 723,474 Q746,468 762,467 Q779,465 805,472 Q831,479 854,474 Q877,470 895,469 Q914,469 933,467 Q951,465 970,465 Q989,465 1006,465 Q1023,465 1048,466 Q1073,467 1093,466 Q1113,465 1136,465 Q1158,466 1173,469 Q1188,473 1210,479 Q1232,486 1257,491 Q1282,495 1307,499 Q1333,503 1358,499 Q1384,495 1403,494 Q1423,494 1444,492 Q1465,490 1481,496 Q1497,502 1517,493 Q1536,485 1557,493 Q1578,502 1601,497 Q1625,493 1650,499 L1676,525 Z" fill="#5D4E50"/></g>
+<rect x="0" y="430" width="1600" height="140" fill="url(#haze)"/>
+<g class="layer near" data-depth="12"><path d="M560,528 L560,517 Q560,517 587,517 Q614,516 647,520 Q680,523 698,520 Q716,517 741,520 Q765,522 807,522 Q849,523 887,523 Q925,523 958,524 Q991,524 1025,521 Q1058,517 1089,515 Q1119,513 1153,517 Q1187,521 1224,520 Q1260,519 1285,522 Q1310,524 1349,524 Q1388,524 1423,521 Q1458,517 1493,513 Q1528,510 1556,507 Q1583,504 1612,502 Q1641,500 1680,504 L1719,528 Z" fill="#4A3B33"/></g>
+
+<g class="layer dunes" data-depth="18">
+  <rect x="-120" y="523" width="1800" height="460" fill="url(#ground)"/>
+  <path d="M-120,556 C560,552 760,540 980,546 C1220,536 1380,530 1660,528 L1660,900 L-120,900 Z" fill="#000" fill-opacity="0.10"/><path d="M-120,660 C520,640 820,600 1050,628 C1260,598 1420,578 1660,582 L1660,900 L-120,900 Z" fill="#000" fill-opacity="0.22"/><path d="M-120,800 C560,770 860,700 1100,742 C1320,690 1460,660 1660,664 L1660,900 L-120,900 Z" fill="#000" fill-opacity="0.34"/>
+  <path class="ridge" d="M760,546 C900,540 1040,546 1220,536" pathLength="1"/><path class="ridge" d="M820,618 C980,606 1120,620 1260,598 C1380,582 1500,586 1620,584" pathLength="1"/><path class="ridge" d="M900,736 C1060,712 1200,730 1320,690 C1440,664 1540,668 1640,666" pathLength="1"/>
+</g>
+
+<g class="layer wall" data-depth="7">
+  <g class="wall-build">
+    <g clip-path="url(#wallClip)">
+      <rect x="-60" y="170" width="630" height="352" fill="url(#mirrorSky)"/>
+      <circle cx="430" cy="490" r="260" fill="url(#sunGlow)" opacity=".85"/>
+      <g transform="translate(1120 0) scale(-1 1)"><path d="M-40,525 L-40,465 Q-40,465 -28,473 Q-15,482 9,477 Q33,472 54,476 Q76,480 96,478 Q117,476 137,482 Q158,489 176,491 Q193,493 216,484 Q238,474 264,473 Q290,472 308,477 Q326,481 338,491 Q350,500 369,504 Q387,507 404,500 Q421,492 441,490 Q460,489 475,499 Q490,508 507,512 Q523,515 542,505 Q561,495 583,501 Q604,508 629,502 Q654,496 677,488 Q700,480 723,474 Q746,468 762,467 Q779,465 805,472 Q831,479 854,474 Q877,470 895,469 Q914,469 933,467 Q951,465 970,465 Q989,465 1006,465 Q1023,465 1048,466 Q1073,467 1093,466 Q1113,465 1136,465 Q1158,466 1173,469 Q1188,473 1210,479 Q1232,486 1257,491 Q1282,495 1307,499 Q1333,503 1358,499 Q1384,495 1403,494 Q1423,494 1444,492 Q1465,490 1481,496 Q1497,502 1517,493 Q1536,485 1557,493 Q1578,502 1601,497 Q1625,493 1650,499 L1676,525 Z" fill="#3E3438" fill-opacity=".85"/></g>
+      <rect x="-60" y="520" width="630" height="500" fill="url(#mirrorGround)"/>
+      <g stroke="#FFFFFF" stroke-width=".6" stroke-opacity=".07"><line x1="-60" y1="227" x2="560" y2="520"/><line x1="-60" y1="265" x2="560" y2="520"/><line x1="-60" y1="302" x2="560" y2="520"/><line x1="-60" y1="339" x2="560" y2="520"/><line x1="-60" y1="376" x2="560" y2="520"/><line x1="-60" y1="414" x2="560" y2="520"/><line x1="-60" y1="451" x2="560" y2="520"/><line x1="-60" y1="488" x2="560" y2="520"/><line x1="-60" y1="525" x2="560" y2="520"/><line x1="-60" y1="563" x2="560" y2="520"/><line x1="-60" y1="600" x2="560" y2="520"/><line x1="-60" y1="637" x2="560" y2="520"/><line x1="-60" y1="675" x2="560" y2="520"/><line x1="-60" y1="712" x2="560" y2="520"/><line x1="-60" y1="749" x2="560" y2="520"/><line x1="-60" y1="786" x2="560" y2="520"/><line x1="-60" y1="824" x2="560" y2="520"/><line x1="-60" y1="861" x2="560" y2="520"/><line x1="-60" y1="898" x2="560" y2="520"/><line x1="-60" y1="935" x2="560" y2="520"/><line x1="-60" y1="973" x2="560" y2="520"/></g>
+      <g stroke="#FFFFFF"><line x1="160.0" y1="729.6" x2="160.0" y2="836.8" stroke-opacity="0.33" stroke-width="1.42"/><line x1="264.8" y1="674.2" x2="264.8" y2="754.4" stroke-opacity="0.33" stroke-width="1.05"/><line x1="326.0" y1="641.8" x2="326.0" y2="706.2" stroke-opacity="0.32" stroke-width="0.83"/><line x1="366.2" y1="620.5" x2="366.2" y2="674.5" stroke-opacity="0.32" stroke-width="0.69"/><line x1="394.7" y1="605.5" x2="394.7" y2="652.1" stroke-opacity="0.31" stroke-width="0.59"/><line x1="415.8" y1="594.3" x2="415.8" y2="635.5" stroke-opacity="0.30" stroke-width="0.51"/><line x1="432.2" y1="585.6" x2="432.2" y2="622.6" stroke-opacity="0.30" stroke-width="0.45"/><line x1="445.2" y1="578.7" x2="445.2" y2="612.4" stroke-opacity="0.29" stroke-width="0.41"/><line x1="455.8" y1="573.1" x2="455.8" y2="604.0" stroke-opacity="0.29" stroke-width="0.40"/><line x1="464.6" y1="568.5" x2="464.6" y2="597.1" stroke-opacity="0.28" stroke-width="0.40"/><line x1="472.1" y1="564.5" x2="472.1" y2="591.2" stroke-opacity="0.27" stroke-width="0.40"/><line x1="478.4" y1="561.2" x2="478.4" y2="586.2" stroke-opacity="0.27" stroke-width="0.40"/><line x1="483.9" y1="558.2" x2="483.9" y2="581.9" stroke-opacity="0.26" stroke-width="0.40"/><line x1="488.7" y1="555.7" x2="488.7" y2="578.1" stroke-opacity="0.26" stroke-width="0.40"/><line x1="493.0" y1="553.5" x2="493.0" y2="574.8" stroke-opacity="0.25" stroke-width="0.40"/><line x1="496.7" y1="551.5" x2="496.7" y2="571.8" stroke-opacity="0.24" stroke-width="0.40"/><line x1="500.1" y1="549.7" x2="500.1" y2="569.1" stroke-opacity="0.24" stroke-width="0.40"/><line x1="503.1" y1="548.1" x2="503.1" y2="566.8" stroke-opacity="0.23" stroke-width="0.40"/><line x1="505.9" y1="546.6" x2="505.9" y2="564.6" stroke-opacity="0.23" stroke-width="0.40"/><line x1="508.3" y1="545.3" x2="508.3" y2="562.7" stroke-opacity="0.22" stroke-width="0.40"/><line x1="510.6" y1="544.1" x2="510.6" y2="560.9" stroke-opacity="0.21" stroke-width="0.40"/><line x1="512.7" y1="543.0" x2="512.7" y2="559.3" stroke-opacity="0.21" stroke-width="0.40"/><line x1="514.6" y1="542.0" x2="514.6" y2="557.8" stroke-opacity="0.20" stroke-width="0.40"/><line x1="516.3" y1="541.1" x2="516.3" y2="556.4" stroke-opacity="0.20" stroke-width="0.40"/><line x1="518.0" y1="540.2" x2="518.0" y2="555.1" stroke-opacity="0.19" stroke-width="0.40"/><line x1="519.5" y1="539.4" x2="519.5" y2="553.9" stroke-opacity="0.18" stroke-width="0.40"/><line x1="520.9" y1="538.7" x2="520.9" y2="552.8" stroke-opacity="0.18" stroke-width="0.40"/><line x1="522.2" y1="538.0" x2="522.2" y2="551.8" stroke-opacity="0.17" stroke-width="0.40"/><line x1="523.4" y1="537.4" x2="523.4" y2="550.8" stroke-opacity="0.17" stroke-width="0.40"/><line x1="524.6" y1="536.7" x2="524.6" y2="549.9" stroke-opacity="0.16" stroke-width="0.40"/><line x1="525.7" y1="536.2" x2="525.7" y2="549.0" stroke-opacity="0.15" stroke-width="0.40"/><line x1="526.7" y1="535.6" x2="526.7" y2="548.2" stroke-opacity="0.15" stroke-width="0.40"/><line x1="527.6" y1="535.1" x2="527.6" y2="547.5" stroke-opacity="0.14" stroke-width="0.40"/><line x1="528.5" y1="534.6" x2="528.5" y2="546.8" stroke-opacity="0.14" stroke-width="0.40"/><line x1="529.4" y1="534.2" x2="529.4" y2="546.1" stroke-opacity="0.13" stroke-width="0.40"/><line x1="530.2" y1="533.8" x2="530.2" y2="545.5" stroke-opacity="0.12" stroke-width="0.40"/><line x1="531.0" y1="533.4" x2="531.0" y2="544.9" stroke-opacity="0.12" stroke-width="0.40"/><line x1="531.7" y1="533.0" x2="531.7" y2="544.3" stroke-opacity="0.11" stroke-width="0.40"/><line x1="532.4" y1="532.6" x2="532.4" y2="543.7" stroke-opacity="0.11" stroke-width="0.40"/><line x1="533.0" y1="532.3" x2="533.0" y2="543.2" stroke-opacity="0.10" stroke-width="0.40"/><line x1="533.7" y1="531.9" x2="533.7" y2="542.7" stroke-opacity="0.09" stroke-width="0.40"/><line x1="534.3" y1="531.6" x2="534.3" y2="542.2" stroke-opacity="0.09" stroke-width="0.40"/><line x1="534.8" y1="531.3" x2="534.8" y2="541.8" stroke-opacity="0.08" stroke-width="0.40"/><line x1="535.4" y1="531.0" x2="535.4" y2="541.4" stroke-opacity="0.08" stroke-width="0.40"/><line x1="535.9" y1="530.7" x2="535.9" y2="541.0" stroke-opacity="0.07" stroke-width="0.40"/><line x1="536.4" y1="530.5" x2="536.4" y2="540.6" stroke-opacity="0.06" stroke-width="0.40"/><line x1="536.9" y1="530.2" x2="536.9" y2="540.2" stroke-opacity="0.06" stroke-width="0.40"/><line x1="537.4" y1="530.0" x2="537.4" y2="539.8" stroke-opacity="0.05" stroke-width="0.40"/><line x1="537.8" y1="529.7" x2="537.8" y2="539.5" stroke-opacity="0.05" stroke-width="0.40"/><line x1="538.2" y1="529.5" x2="538.2" y2="539.1" stroke-opacity="0.05" stroke-width="0.40"/><line x1="538.7" y1="529.3" x2="538.7" y2="538.8" stroke-opacity="0.05" stroke-width="0.40"/><line x1="539.1" y1="529.1" x2="539.1" y2="538.5" stroke-opacity="0.05" stroke-width="0.40"/><line x1="539.4" y1="528.9" x2="539.4" y2="538.2" stroke-opacity="0.05" stroke-width="0.40"/><line x1="539.8" y1="528.7" x2="539.8" y2="537.9" stroke-opacity="0.05" stroke-width="0.40"/><line x1="540.2" y1="528.5" x2="540.2" y2="537.6" stroke-opacity="0.05" stroke-width="0.40"/><line x1="540.5" y1="528.3" x2="540.5" y2="537.3" stroke-opacity="0.05" stroke-width="0.40"/><line x1="540.8" y1="528.1" x2="540.8" y2="537.1" stroke-opacity="0.05" stroke-width="0.40"/><line x1="541.2" y1="528.0" x2="541.2" y2="536.8" stroke-opacity="0.05" stroke-width="0.40"/><line x1="541.5" y1="527.8" x2="541.5" y2="536.6" stroke-opacity="0.05" stroke-width="0.40"/><line x1="541.8" y1="527.6" x2="541.8" y2="536.4" stroke-opacity="0.05" stroke-width="0.40"/><line x1="542.1" y1="527.5" x2="542.1" y2="536.1" stroke-opacity="0.05" stroke-width="0.40"/><line x1="542.3" y1="527.3" x2="542.3" y2="535.9" stroke-opacity="0.05" stroke-width="0.40"/><line x1="542.6" y1="527.2" x2="542.6" y2="535.7" stroke-opacity="0.05" stroke-width="0.40"/><line x1="542.9" y1="527.1" x2="542.9" y2="535.5" stroke-opacity="0.05" stroke-width="0.40"/><line x1="543.1" y1="526.9" x2="543.1" y2="535.3" stroke-opacity="0.05" stroke-width="0.40"/><line x1="543.4" y1="526.8" x2="543.4" y2="535.1" stroke-opacity="0.05" stroke-width="0.40"/><line x1="543.6" y1="526.7" x2="543.6" y2="534.9" stroke-opacity="0.05" stroke-width="0.40"/><line x1="543.9" y1="526.5" x2="543.9" y2="534.7" stroke-opacity="0.05" stroke-width="0.40"/><line x1="544.1" y1="526.4" x2="544.1" y2="534.5" stroke-opacity="0.05" stroke-width="0.40"/><line x1="544.3" y1="526.3" x2="544.3" y2="534.4" stroke-opacity="0.05" stroke-width="0.40"/><line x1="544.5" y1="526.2" x2="544.5" y2="534.2" stroke-opacity="0.05" stroke-width="0.40"/><line x1="544.7" y1="526.1" x2="544.7" y2="534.0" stroke-opacity="0.05" stroke-width="0.40"/><line x1="544.9" y1="526.0" x2="544.9" y2="533.9" stroke-opacity="0.05" stroke-width="0.40"/><line x1="545.1" y1="525.9" x2="545.1" y2="533.7" stroke-opacity="0.05" stroke-width="0.40"/><line x1="545.3" y1="525.8" x2="545.3" y2="533.6" stroke-opacity="0.05" stroke-width="0.40"/><line x1="545.5" y1="525.7" x2="545.5" y2="533.4" stroke-opacity="0.05" stroke-width="0.40"/><line x1="545.7" y1="525.6" x2="545.7" y2="533.3" stroke-opacity="0.05" stroke-width="0.40"/><line x1="545.9" y1="525.5" x2="545.9" y2="533.1" stroke-opacity="0.05" stroke-width="0.40"/><line x1="546.1" y1="525.4" x2="546.1" y2="533.0" stroke-opacity="0.05" stroke-width="0.40"/></g>
+      <rect class="sheen" x="-420" y="150" width="360" height="900" fill="url(#sheen)" transform="skewX(-18)"/>
+    </g>
+    <line x1="-60" y1="190" x2="560" y2="518" stroke="#FFE2AE" stroke-width="7" stroke-opacity=".18"/>
+    <line x1="-60" y1="190" x2="560" y2="518" stroke="#FFF0D0" stroke-width="2"/>
+    <line x1="-60" y1="1010" x2="560" y2="522" stroke="#000" stroke-width="3" stroke-opacity=".35"/>
+    <g class="pulse" opacity="0"><set attributeName="opacity" to="1" begin="2.4s"/><circle r="26" fill="url(#pulse)"><animate attributeName="r" values="26;3" dur="5.5s" begin="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines=".2 .7 .4 1"/></circle>
+      <animateMotion dur="5.5s" begin="2.4s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".2 .7 .4 1"><mpath href="#topEdge"/></animateMotion></g>
+    <g class="pulse" opacity="0"><set attributeName="opacity" to="1" begin="5.15s"/><circle r="18" fill="url(#pulse)"><animate attributeName="r" values="18;2" dur="5.5s" begin="5.15s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines=".2 .7 .4 1"/></circle>
+      <animateMotion dur="5.5s" begin="5.15s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".2 .7 .4 1"><mpath href="#topEdge"/></animateMotion></g>
+  </g>
+</g>
+</svg>
+    <div class="hero-shade"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <h1><span class="ln"><span>اسأل عن رؤية</span></span><span class="ln"><span>السعودية 2030</span></span></h1>
+        <p class="lead">اكتب سؤالك بأسلوبك، وسيبحث المساعد في قاعدة المعرفة عن أقرب معلومة إلى معنى سؤالك، ثم يعرض لك الإجابة ومصدرها ودرجة الثقة فيها.</p>
+
+        <div class="panel">
+          <form class="ask" id="askForm">
+            <label for="question">سؤالك عن الرؤية</label>
+            <input id="question" type="text" placeholder="مثال: ما محاور الرؤية؟" autocomplete="off">
+            <button id="askBtn" type="submit" disabled>اسأل</button>
+          </form>
+          <div class="chips" id="chips"></div>
+          <div class="status" id="status" role="status">جارٍ تحميل نموذج الذكاء الاصطناعي...</div>
+          <div class="bar" aria-hidden="true"><span id="barFill"></span></div>
+
+          <div class="answer" id="answer" aria-live="polite">
+            <p class="q" id="ansQ"></p>
+            <p class="a" id="ansText"></p>
+            <div class="meta" id="ansMeta"></div>
+            <div class="related" id="ansRelated"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="credit">رسم توضيحي أصلي مستوحى من مشروع «ذا لاين» في نيوم</p>
+  </div>
+
+  <div class="sadu" role="presentation"></div>
+
+  <section class="block targets" id="targets">
+    <div class="wrap">
+      <h2 class="rv">أرقام من مستهدفات الرؤية</h2>
+      <p class="intro rv" style="--d:.1s">اضغط على أي رقم ليشرحه لك المساعد من قاعدة المعرفة.</p>
+      <div class="t-row">
+        <button class="target rv" style="--d:.05s" type="button" data-q="كم عدد المعتمرين المستهدف؟"><span class="num" data-to="30" data-suffix=" مليون">30 مليون</span><span class="cap">معتمر سنويًا</span><span class="go">اسأل المساعد <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></span></button>
+        <button class="target rv" style="--d:.15s" type="button" data-q="كم نسبة تملك المساكن المستهدفة؟"><span class="num" data-to="70" data-suffix="%">70%</span><span class="cap">نسبة تملّك الأسر للمساكن</span><span class="go">اسأل المساعد <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></span></button>
+        <button class="target rv" style="--d:.25s" type="button" data-q="كم عدد المتطوعين المستهدف؟"><span class="num" data-to="1000000" data-suffix="">1,000,000</span><span class="cap">متطوع سنويًا في القطاع غير الربحي</span><span class="go">اسأل المساعد <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></span></button>
+        <button class="target rv" style="--d:.35s" type="button" data-q="ما مستهدف الصادرات غير النفطية؟"><span class="num" data-to="50" data-suffix="%">50%</span><span class="cap">حصة الصادرات غير النفطية من الناتج المحلي غير النفطي</span><span class="go">اسأل المساعد <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap">
+      <h2 class="rv">كيف يعمل المساعد؟</h2>
+      <p class="intro rv" style="--d:.1s">المساعد لا يخترع إجابات: يبحث عن المعنى في قاعدة معرفة مكتوبة مسبقًا، ويعمل كاملًا داخل متصفحك دون خادم ودون مفتاح.</p>
+      <ol class="steps rv-line">
+        <li class="rv" style="--d:.2s;--k:0"><h3>تمثيل المعنى</h3><p>يحوّل نموذج التضمين المتجهي (Embedding) كل معلومة في قاعدة المعرفة، وكل سؤال تكتبه، إلى أرقام تمثّل معناه.</p></li>
+        <li class="rv" style="--d:.65s;--k:1"><h3>البحث الدلالي</h3><p>يقارن معنى سؤالك بكل المعلومات (Semantic Search)، ويختار الأقرب إليه وإن اختلفت الكلمات.</p></li>
+        <li class="rv" style="--d:1.1s;--k:2"><h3>إجابة مع مصدرها</h3><p>يعرض المعلومة الأقرب ومصدرها ودرجة الثقة، وإذا كانت الثقة منخفضة يقول لك إنه لا يعرف.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block pillars" id="pillars">
+    <div class="wrap">
+      <h2 class="rv">المحاور الثلاثة للرؤية</h2>
+      <p class="intro rv" style="--d:.1s">تقوم رؤية السعودية 2030 على ثلاثة محاور يكمّل بعضها بعضًا.</p>
+      <div class="pillar-row">
+        <div class="pillar rv" style="--d:.1s;--c:var(--palm)"><h3>مجتمع حيوي</h3><p class="traits">قيمه راسخة، بيئته عامرة، بنيانه متين</p><p>تعزيز الهوية الوطنية، وتحسين جودة الحياة بالثقافة والترفيه والرياضة، ورعاية الأسرة والصحة.</p></div>
+        <div class="pillar rv" style="--d:.25s;--c:#C8913F"><h3>اقتصاد مزدهر</h3><p class="traits">فرصه مثمرة، استثماره فاعل، تنافسيته جاذبة، موقعه مستغل</p><p>تنويع مصادر الدخل، وتمكين القطاع الخاص، وتوفير فرص العمل، والاستفادة من موقع المملكة.</p></div>
+        <div class="pillar rv" style="--d:.4s;--c:var(--sadu)"><h3>وطن طموح</h3><p class="traits">حكومته فاعلة، مواطنه مسؤول</p><p>رفع كفاءة العمل الحكومي وشفافيته، والتحول الرقمي للخدمات، وتعزيز المسؤولية والعمل التطوعي.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <h2 class="rv">من المشاريع الكبرى</h2>
+      <p class="intro rv" style="--d:.1s">مشاريع مرتبطة بالرؤية تنوّع الاقتصاد وتطوّر السياحة والسكن والتراث.</p>
+      <div class="projects">
+        <div class="project rv" style="--d:.05s"><div class="where">شمال غرب المملكة</div><div><h3>نيوم</h3><p>منطقة تنموية على ساحل البحر الأحمر، أُعلن عنها في أكتوبر 2017.</p><button class="askit" type="button" data-q="ما هو مشروع نيوم؟">اسأل المساعد عن نيوم</button></div></div>
+        <div class="project rv" style="--d:.12s"><div class="where">ساحل البحر الأحمر</div><div><h3>مشروع البحر الأحمر</h3><p>وجهة سياحية تضم جزرًا وشعابًا مرجانية على الساحل الغربي.</p><button class="askit" type="button" data-q="ما هو مشروع البحر الأحمر؟">اسأل المساعد عن البحر الأحمر</button></div></div>
+        <div class="project rv" style="--d:.19s"><div class="where">قرب الرياض</div><div><h3>القدية</h3><p>وجهة للترفيه والرياضة والثقافة.</p><button class="askit" type="button" data-q="ما هي القدية؟">اسأل المساعد عن القدية</button></div></div>
+        <div class="project rv" style="--d:.26s"><div class="where">شمال غرب الرياض</div><div><h3>الدرعية</h3><p>تطوير الدرعية التاريخية، مهد الدولة السعودية الأولى.</p><button class="askit" type="button" data-q="ما هو مشروع الدرعية؟">اسأل المساعد عن الدرعية</button></div></div>
+        <div class="project rv" style="--d:.33s"><div class="where">مدن المملكة</div><div><h3>روشن</h3><p>تطوير مجتمعات سكنية متكاملة.</p><button class="askit" type="button" data-q="ما هو مشروع روشن؟">اسأل المساعد عن روشن</button></div></div>
+        <div class="project rv" style="--d:.4s"><div class="where">شمال غرب المملكة</div><div><h3>العلا</h3><p>محافظة غنية بالآثار، وفيها موقع الحِجر المسجّل في التراث العالمي.</p><button class="askit" type="button" data-q="ما هي العلا؟">اسأل المساعد عن العلا</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block about" id="about">
+    <div class="wrap about-grid">
+      <div class="rv">
+        <h2>عن المشروع</h2>
+        <p><b>المشكلة:</b> معلومات الرؤية كثيرة ومتفرقة في وثائق وتقارير طويلة، ويصعب على الطالب أو الزائر أن يجد إجابة سريعة عن سؤال محدد.</p>
+        <p><b>الحل:</b> مساعد ذكي يفهم معنى السؤال ويجيب فورًا من قاعدة معرفة مختصرة، مع ذكر المصدر.</p>
+        <p><b>التقنية:</b> التضمين المتجهي والبحث الدلالي بمكتبة Transformers.js داخل المتصفح، ونموذج متعدد اللغات يدعم العربية. يُحمَّل النموذج مرة واحدة (حوالي 120 ميجابايت) ثم يُحفظ في المتصفح.</p>
+      </div>
+      <div class="note rv" style="--d:.15s">
+        <p style="margin-top:0"><b>تنبيه:</b> مشروع تدريبي غير رسمي ضمن البرنامج التأسيسي في الذكاء الاصطناعي، ولا يمثّل أي جهة حكومية. المعلومات مختصرة للتعلّم، وقد تتغير المستهدفات والأرقام.</p>
+        <p>صورة الواجهة رسم توضيحي أصلي مستوحى من مشروع «ذا لاين»، وليست صورة رسمية للمشروع.</p>
+        <p style="margin-bottom:0">المصدر الرسمي للمعلومات المحدّثة: <a href="https://www.vision2030.gov.sa" target="_blank" rel="noopener">vision2030.gov.sa</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">إعداد: <span id="author">اسم المتدرب</span> · مشروع ختامي في البرنامج التأسيسي في الذكاء الاصطناعي</div>
+</footer>
+
+<!-- =====================================================================
+     قاعدة المعرفة: عدّل هنا لمشروعك
+     كل معلومة: عنوان (title)، ونص الإجابة (text)، وأسئلة مقترحة (questions)، وكلمات مفتاحية اختيارية (keywords)
+     الأسئلة المقترحة تساعد البحث الدلالي على فهم الصياغات المختلفة
+     والكلمات المفتاحية تساعد في الأسماء، مثل أسماء المشاريع
+     ===================================================================== -->
+<script>
+window.KNOWLEDGE = [
+  { title: "تعريف الرؤية",
+    text: "رؤية السعودية 2030 خطة وطنية طويلة المدى أُعلنت في 25 أبريل 2016، تهدف إلى تنويع الاقتصاد وتقليل الاعتماد على النفط، وتطوير الخدمات الحكومية، وتحسين جودة الحياة.",
+    questions: ["ما هي رؤية السعودية 2030؟", "متى أُطلقت الرؤية؟", "ما هدف رؤية 2030؟", "متى أعلنت رؤية المملكة؟", "What is Saudi Vision 2030?"] },
+  { title: "محاور الرؤية",
+    text: "تقوم الرؤية على ثلاثة محاور: مجتمع حيوي، واقتصاد مزدهر، ووطن طموح.",
+    questions: ["ما محاور الرؤية؟", "كم عدد محاور رؤية 2030؟", "ما الركائز الثلاث للرؤية؟", "What are the pillars of Vision 2030?"] },
+  { title: "محور مجتمع حيوي",
+    text: "محور مجتمع حيوي: قيمه راسخة، وبيئته عامرة، وبنيانه متين. ويركّز على تعزيز الهوية الوطنية، وتحسين جودة الحياة بالثقافة والترفيه والرياضة، ورعاية الأسرة والصحة.",
+    questions: ["ما هو محور مجتمع حيوي؟", "ماذا يشمل المجتمع الحيوي؟"] },
+  { title: "محور اقتصاد مزدهر",
+    text: "محور اقتصاد مزدهر: فرصه مثمرة، واستثماره فاعل، وتنافسيته جاذبة، وموقعه مستغل. ويركّز على تنويع مصادر الدخل، وتمكين القطاع الخاص، وتوفير فرص العمل.",
+    questions: ["ما هو محور اقتصاد مزدهر؟", "كيف تنوّع الرؤية الاقتصاد؟"] },
+  { title: "محور وطن طموح",
+    text: "محور وطن طموح: حكومته فاعلة، ومواطنه مسؤول. ويركّز على رفع كفاءة العمل الحكومي وشفافيته، والتحول الرقمي للخدمات، وتعزيز المسؤولية والعمل التطوعي.",
+    questions: ["ما هو محور وطن طموح؟", "ما دور الحكومة في الرؤية؟"] },
+  { title: "مرتكزات الرؤية",
+    text: "تنطلق الرؤية من ثلاثة مرتكزات: العمق العربي والإسلامي، والقوة الاستثمارية، وأهمية الموقع الجغرافي الاستراتيجي الذي يربط آسيا وأوروبا وأفريقيا.",
+    questions: ["ما مرتكزات الرؤية؟", "ما نقاط القوة التي تنطلق منها الرؤية؟"] },
+  { title: "برامج تحقيق الرؤية",
+    text: "تُنفَّذ الرؤية عبر برامج تحقيق الرؤية، ولكل برنامج خطة ومبادرات ومؤشرات أداء. ومنها: برنامج جودة الحياة، وبرنامج تحول القطاع الصحي، وبرنامج تنمية القدرات البشرية، وبرنامج الإسكان، وبرنامج صندوق الاستثمارات العامة، وبرنامج خدمة ضيوف الرحمن.",
+    questions: ["ما هي برامج تحقيق الرؤية؟", "كيف تُنفَّذ الرؤية؟", "ما البرامج التي تحقق الرؤية؟"] },
+  { title: "برنامج تحول القطاع الصحي",
+    text: "برنامج تحول القطاع الصحي يهدف إلى تسهيل الوصول إلى الخدمات الصحية، وتحسين جودتها وكفاءتها، وتعزيز الوقاية من المخاطر الصحية، ومن مجالاته تطوير الرعاية الأولية والتحول الرقمي في الصحة.",
+    questions: ["ما هو برنامج تحول القطاع الصحي؟", "ماذا تقدم الرؤية في الصحة؟", "كيف تطور الرؤية الخدمات الصحية؟"] },
+  { title: "برنامج جودة الحياة",
+    text: "برنامج جودة الحياة يهدف إلى تحسين نمط حياة الفرد والأسرة، وتهيئة البيئة لمشاركة المواطنين والمقيمين في الأنشطة الثقافية والترفيهية والرياضية.",
+    questions: ["ما هو برنامج جودة الحياة؟", "ماذا تقدم الرؤية في الترفيه والرياضة؟"] },
+  { title: "برنامج تنمية القدرات البشرية",
+    text: "برنامج تنمية القدرات البشرية يهدف إلى إعداد مواطن منافس عالميًا، بتطوير التعليم والتدريب وبناء المهارات مدى الحياة.",
+    questions: ["ما هو برنامج تنمية القدرات البشرية؟", "ماذا تقدم الرؤية في التعليم؟", "التعليم والتدريب في الرؤية", "كيف تطور الرؤية المهارات؟"],
+    keywords: ["التعليم", "القدرات البشرية"] },
+  { title: "برنامج الإسكان",
+    text: "برنامج الإسكان يهدف إلى تمكين الأسر السعودية من تملّك المساكن، ومن مستهدفاته رفع نسبة تملّك الأسر للمساكن إلى 70% بحلول 2030.",
+    questions: ["ما هو برنامج الإسكان؟", "كم نسبة تملك المساكن المستهدفة؟", "ماذا تقدم الرؤية في السكن؟"],
+    keywords: ["الاسكان", "تملك المساكن"] },
+  { title: "برنامج خدمة ضيوف الرحمن",
+    text: "برنامج خدمة ضيوف الرحمن يهدف إلى تيسير استضافة أكبر عدد من الحجاج والمعتمرين وإثراء تجربتهم. ومن مستهدفات الرؤية رفع عدد المعتمرين إلى 30 مليون معتمر سنويًا.",
+    questions: ["ما هو برنامج خدمة ضيوف الرحمن؟", "كم عدد المعتمرين المستهدف؟", "ماذا تقدم الرؤية للحجاج والمعتمرين؟"],
+    keywords: ["معتمر", "العمره", "حجاج", "ضيوف الرحمن"] },
+  { title: "صندوق الاستثمارات العامة",
+    text: "صندوق الاستثمارات العامة هو الصندوق السيادي للمملكة، وهو محرك رئيسي لتنويع الاقتصاد ويقود عددًا من المشاريع الكبرى.",
+    questions: ["ما هو صندوق الاستثمارات العامة؟", "من يمول المشاريع الكبرى؟"] },
+  { title: "المشاريع الكبرى",
+    text: "من المشاريع الكبرى المرتبطة بالرؤية: نيوم، ومشروع البحر الأحمر، والقدية، والدرعية، وروشن، وتطوير العلا.",
+    questions: ["ما المشاريع الكبرى في الرؤية؟", "اذكر مشاريع رؤية 2030", "ما أبرز مشاريع الرؤية؟"] },
+  { title: "نيوم",
+    text: "نيوم منطقة تنموية في شمال غرب المملكة على ساحل البحر الأحمر، أُعلن عنها في أكتوبر 2017.",
+    questions: ["ما هو مشروع نيوم؟", "أين تقع نيوم؟", "متى أُعلن عن نيوم؟", "What is NEOM?"],
+    keywords: ["نيوم", "neom"] },
+  { title: "مشروع البحر الأحمر",
+    text: "مشروع البحر الأحمر وجهة سياحية على ساحل البحر الأحمر في غرب المملكة، تضم جزرًا وشعابًا مرجانية.",
+    questions: ["ما هو مشروع البحر الأحمر؟", "أين يقع مشروع البحر الأحمر؟"],
+    keywords: ["مشروع البحر الاحمر", "red sea"] },
+  { title: "القدية",
+    text: "القدية وجهة للترفيه والرياضة والثقافة قرب مدينة الرياض.",
+    questions: ["ما هي القدية؟", "أين تقع القدية؟"],
+    keywords: ["القديه", "qiddiya"] },
+  { title: "الدرعية",
+    text: "مشروع الدرعية يطوّر الدرعية التاريخية، مهد الدولة السعودية الأولى، شمال غرب الرياض، وفيها حي الطريف المسجّل في قائمة التراث العالمي لليونسكو منذ 2010.",
+    questions: ["ما هو مشروع الدرعية؟", "ما هو حي الطريف؟", "أين تقع الدرعية؟"],
+    keywords: ["الدرعيه", "الطريف", "diriyah"] },
+  { title: "روشن",
+    text: "روشن مطوّر عقاري وطني يبني مجتمعات سكنية متكاملة في مدن المملكة.",
+    questions: ["ما هو مشروع روشن؟", "من يطوّر المجتمعات السكنية الجديدة؟"],
+    keywords: ["روشن", "roshn"] },
+  { title: "العلا",
+    text: "العلا محافظة في شمال غرب المملكة غنية بالآثار، وفيها موقع الحِجر، أول موقع سعودي يُسجَّل في قائمة التراث العالمي لليونسكو عام 2008.",
+    questions: ["ما هي العلا؟", "ما هو موقع الحجر؟", "ما أول موقع سعودي في التراث العالمي؟"],
+    keywords: ["العلا", "الحجر", "alula", "hegra"] },
+  { title: "مستهدفات العمل والمرأة",
+    text: "من مستهدفات وثيقة الرؤية عند إطلاقها: خفض معدل البطالة من 11.6% إلى 7%، ورفع نسبة مشاركة المرأة في سوق العمل من 22% إلى 30%.",
+    questions: ["كم معدل البطالة المستهدف؟", "كم نسبة مشاركة المرأة المستهدفة؟", "ماذا تقدم الرؤية للمرأة؟"] },
+  { title: "العمل التطوعي",
+    text: "من مستهدفات الرؤية الوصول إلى مليون متطوع في القطاع غير الربحي سنويًا.",
+    questions: ["كم عدد المتطوعين المستهدف؟", "ما مستهدف التطوع في الرؤية؟"] },
+  { title: "الصادرات غير النفطية",
+    text: "من مستهدفات وثيقة الرؤية رفع نسبة الصادرات غير النفطية من 16% إلى 50% على الأقل من إجمالي الناتج المحلي غير النفطي.",
+    questions: ["ما مستهدف الصادرات غير النفطية؟", "كيف تقلل الرؤية الاعتماد على النفط؟"] },
+  { title: "المصدر الرسمي",
+    text: "الموقع الرسمي للرؤية هو vision2030.gov.sa، وفيه التقارير السنوية وتفاصيل البرامج والمستهدفات المحدّثة.",
+    questions: ["ما هو الموقع الرسمي للرؤية؟", "أين أجد معلومات رسمية عن الرؤية؟"] },
+];
+
+// أسئلة مقترحة تظهر تحت خانة السؤال
+window.SUGGESTED = ["ما محاور الرؤية؟", "متى أُطلقت الرؤية؟", "أين تقع نيوم؟", "ماذا تقدم الرؤية في الصحة؟", "كم عدد المعتمرين المستهدف؟"];
+
+// أقل درجة تشابه نقبلها كإجابة (من 0 إلى 1). أقل منها يقول المساعد: لا أعرف
+window.THRESHOLD = 0.55;
+</script>
+
+<!-- =====================================================================
+     الذكاء الاصطناعي: التضمين المتجهي والبحث الدلالي داخل المتصفح
+     ===================================================================== -->
+<script type="module">
+import { pipeline } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
+
+const MODEL = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";   // نموذج تضمين متعدد اللغات يدعم العربية
+const $ = (id) => document.getElementById(id);
+let extractor = null;        // دالة التضمين
+let vectors = [];            // تضمين كل نص في قاعدة المعرفة
+let owners = [];             // رقم المعلومة التي يتبعها كل نص
+let pending = null;          // سؤال طُرح قبل اكتمال التحميل
+
+function setStatus(text, progress) {
+  $("status").textContent = text;
+  if (progress !== undefined) $("barFill").style.width = progress + "%";
+}
+
+// جداء نقطي: لأن التضمينات مطبّعة (normalize) فهو يساوي تشابه جيب التمام
+function dot(a, b) { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; }
+
+async function embed(texts) {
+  const out = await extractor(texts, { pooling: "mean", normalize: true });
+  return out.tolist();
+}
+
+async function init() {
+  const files = {};
+  extractor = await pipeline("feature-extraction", MODEL, {
+    dtype: "q8",
+    progress_callback: (p) => {                 // نسبة تحميل ملفات النموذج
+      if (p.status === "progress" && p.total) {
+        files[p.file] = [p.loaded, p.total];
+        const loaded = Object.values(files).reduce((s, f) => s + f[0], 0);
+        const total = Object.values(files).reduce((s, f) => s + f[1], 0);
+        setStatus(`جارٍ تحميل نموذج الذكاء الاصطناعي (مرة واحدة فقط): ${Math.round(loaded / total * 100)}%`, Math.round(loaded / total * 90));
+      }
+    },
+  });
+  setStatus("جارٍ تجهيز قاعدة المعرفة...", 92);
+  const texts = [];
+  window.KNOWLEDGE.forEach((item, i) => {
+    [item.title, item.text, ...(item.questions || [])].forEach((t) => { texts.push(t); owners.push(i); });
+  });
+  vectors = await embed(texts);
+  setStatus(`المساعد جاهز: ${window.KNOWLEDGE.length} معلومة في قاعدة المعرفة. اكتب سؤالك.`, 100);
+  $("askBtn").disabled = false;
+  document.body.dataset.ready = "1";
+  if (pending) { const q = pending; pending = null; ask(q); }
+}
+
+// توحيد الكتابة قبل المقارنة الحرفية: أ إ آ ← ا، ة ← ه، ى ← ي، وحذف التشكيل
+function norm(s) {
+  return s.toLowerCase().replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[ً-ْ]/g, "");
+}
+
+// يرجع المعلومات مرتبة من الأقرب للأبعد
+// درجة كل معلومة = أعلى تشابه دلالي بين السؤال ونصوصها
+// + مكافأة صغيرة (0.1) إذا ذُكرت إحدى كلماتها المفتاحية حرفيًا في السؤال (بحث هجين: Hybrid Search)
+async function search(question) {
+  const [q] = await embed([question]);
+  const best = new Array(window.KNOWLEDGE.length).fill(-1);
+  vectors.forEach((v, j) => { const s = dot(q, v); if (s > best[owners[j]]) best[owners[j]] = s; });
+  const nq = norm(question);
+  window.KNOWLEDGE.forEach((item, i) => {
+    if ((item.keywords || []).some((k) => nq.includes(norm(k)))) best[i] = Math.min(1, best[i] + 0.1);
+  });
+  return best.map((score, i) => ({ i, score })).sort((a, b) => b.score - a.score);
+}
+
+// يكتب نص الإجابة كلمةً كلمة لتظهر بحركة متتابعة (النص الكامل يبقى كما هو)
+function writeWords(el, text) {
+  el.textContent = "";
+  text.split(" ").forEach((w, i) => {
+    if (i) el.append(" ");
+    const s = document.createElement("span");
+    s.className = "w"; s.style.setProperty("--i", Math.min(i, 45)); s.textContent = w;
+    el.append(s);
+  });
+}
+
+async function ask(question) {
+  question = question.trim();
+  if (!question) return;
+  if (!extractor || !vectors.length) { pending = question; setStatus("سأجيب عن سؤالك فور اكتمال تحميل النموذج..."); return; }
+  $("askBtn").disabled = true;
+  const results = await search(question);
+  const top = results[0];
+  const item = window.KNOWLEDGE[top.i];
+  const box = $("answer");
+  box.classList.remove("show"); void box.offsetWidth; box.classList.add("show");   // إعادة تشغيل حركة ظهور البطاقة
+  $("ansQ").textContent = "سؤالك: " + question;
+  const pct = Math.max(0, Math.round(top.score * 100));
+  if (top.score >= window.THRESHOLD) {
+    box.classList.remove("unknown");
+    writeWords($("ansText"), item.text);
+    $("ansMeta").innerHTML = "";
+    const src = document.createElement("span"); src.innerHTML = "المصدر: <b></b>"; src.querySelector("b").textContent = item.title;
+    const conf = document.createElement("span"); conf.textContent = `درجة الثقة: ${pct}%`;
+    const barEl = document.createElement("span"); barEl.className = "conf"; barEl.innerHTML = "<i></i>";
+    conf.appendChild(barEl);
+    $("ansMeta").append(src, conf);
+    requestAnimationFrame(() => requestAnimationFrame(() => { barEl.firstChild.style.width = pct + "%"; }));
+  } else {
+    box.classList.add("unknown");
+    writeWords($("ansText"), "لا أعرف: لم أجد في قاعدة المعرفة معلومة قريبة بما يكفي من سؤالك. جرّب صياغة أخرى، أو اختر من المواضيع القريبة.");
+    $("ansMeta").textContent = `أعلى درجة تشابه: ${pct}% (أقل من الحد ${Math.round(window.THRESHOLD * 100)}%)`;
+  }
+  // مواضيع قريبة: أعلى نتيجتين بعد الأولى (أو أعلى ثلاث عند «لا أعرف»)
+  const rel = $("ansRelated");
+  rel.textContent = "مواضيع قريبة: ";
+  results.slice(top.score >= window.THRESHOLD ? 1 : 0, 3).forEach((r) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = window.KNOWLEDGE[r.i].title;
+    b.addEventListener("click", () => { $("question").value = window.KNOWLEDGE[r.i].questions?.[0] || window.KNOWLEDGE[r.i].title; ask($("question").value); });
+    rel.appendChild(b);
+  });
+  box.dataset.title = top.score >= window.THRESHOLD ? item.title : "UNKNOWN";
+  box.dataset.score = top.score.toFixed(3);
+  $("askBtn").disabled = false;
+}
+
+$("askForm").addEventListener("submit", (e) => { e.preventDefault(); ask($("question").value); });
+window.SUGGESTED.forEach((q) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.textContent = q;
+  b.addEventListener("click", () => { $("question").value = q; ask(q); });
+  $("chips").appendChild(b);
+});
+// أزرار «اسأل المساعد» في الأرقام والمشاريع: تصعد إلى المساعد وتطرح السؤال
+document.querySelectorAll("[data-q]").forEach((el) => el.addEventListener("click", () => {
+  const q = el.dataset.q;
+  $("question").value = q;
+  $("assistant").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  setTimeout(() => ask(q), 450);
+}));
+window.askAssistant = ask;   // للاختبار من أدوات المطوّر
+
+init().catch((err) => {
+  setStatus("تعذّر تحميل نموذج الذكاء الاصطناعي. تأكد من اتصالك بالإنترنت ثم حدّث الصفحة. (" + err.message + ")");
+});
+</script>
+
+<!-- =====================================================================
+     الحركة: ظهور الأقسام عند التمرير، والعدّادات، وعمق المشهد مع حركة المؤشر
+     ===================================================================== -->
+<script>
+(function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scene = document.getElementById("scene");
+  const top = document.getElementById("top");
+
+  // الترويسة: شفافة فوق المشهد، ثم خلفية داكنة بعد التمرير
+  const onScroll = () => top.classList.toggle("solid", scrollY > 40);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // تأطير المشهد على الجوال حتى يظهر الخط ونقطة الأفق
+  const fit = () => scene.setAttribute("viewBox", innerWidth < 760 ? "60 200 760 640" : "0 0 1600 900");
+  addEventListener("resize", fit); fit();
+
+  // العدّادات: من الصفر إلى الرقم المستهدف
+  const fmt = (n) => n.toLocaleString("en-US");
+  function count(el) {
+    const to = +el.dataset.to, suf = el.dataset.suffix || "", t0 = performance.now(), dur = 1600;
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+      el.textContent = fmt(Math.round(to * e)) + suf;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  // ظهور العناصر عند وصولها إلى الشاشة
+  const items = document.querySelectorAll(".rv, .steps");
+  if (reduce || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("in"));
+  } else {
+    const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add("in");
+      en.target.querySelectorAll?.(".num").forEach(count);
+      if (en.target.classList.contains("num")) count(en.target);
+      io.unobserve(en.target);
+    }), { threshold: .18, rootMargin: "0px 0px -6% 0px" });
+    items.forEach((el) => io.observe(el));
+  }
+
+  // بطاقات الأرقام: إضاءة تتبع المؤشر
+  document.querySelectorAll(".target").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }));
+
+  if (reduce) { scene.pauseAnimations && scene.pauseAnimations(); return; }
+
+  // عمق المشهد: الطبقات القريبة تتحرك أكثر من البعيدة مع المؤشر والتمرير
+  const layers = [...scene.querySelectorAll(".layer")].map((g) => ({ g, d: +g.dataset.depth }));
+  let mx = 0, my = 0, cx = 0, cy = 0, sy = 0, raf = 0;
+  const hero = document.getElementById("assistant");
+  hero.addEventListener("pointermove", (e) => {
+    mx = (e.clientX / innerWidth - .5) * 2; my = (e.clientY / innerHeight - .5) * 2; if (!raf) raf = requestAnimationFrame(tick);
+  });
+  addEventListener("scroll", () => { sy = Math.min(scrollY, innerHeight); if (!raf) raf = requestAnimationFrame(tick); }, { passive: true });
+  function tick() {
+    cx += (mx - cx) * .08; cy += (my - cy) * .08;
+    layers.forEach(({ g, d }) => { g.style.transform = `translate(${(-cx * d * .9).toFixed(2)}px, ${(-cy * d * .4 + sy * d * .0025).toFixed(2)}px)`; });
+    scene.style.transform = `translateY(${(sy * .25).toFixed(1)}px)`;
+    raf = (Math.abs(mx - cx) > .002 || Math.abs(my - cy) > .002) ? requestAnimationFrame(tick) : 0;
+  }
+})();
+</script>
+</body>
+</html>
